@@ -1,12 +1,9 @@
-#if defined _amxmisc_included
-	#error Disable amxmisc.inc
+// v2
+#if defined _newgenmenu_included
+  #endinput
 #endif
 
 #define _newgenmenu_included
-
-#if !defined _amxmodx_included
-	#include <amxmodx>
-#endif
 
 const MENU_KEYS = (1<<0|1<<1|1<<2|1<<3|1<<4|1<<5|1<<6|1<<7|1<<8|1<<9);
 
@@ -23,11 +20,11 @@ const MENU_ITEM_0 = 9;
 
 const INFINITY_VIEWING = -1;
 
-#define menu_headline(%1, %2, %3) %2 = formatex(%1[%2], charsmax(%1) - %2, %3)
+#define menu_title(%1,%2,%3) (%2 = formatex(%1[%2], charsmax(%1) - %2, %3))
 #define menu_item(%1,%2,%3) (%2 += formatex(%1[%2], charsmax(%1) - %2, %3))
 #define menu_exit(%1,%2,%3) (formatex(%1[%2], charsmax(%1) - %2, %3))
 
-stock register_menu(const szTitle[], const szFunction[], iOutside = 0)
+stock register_ng_menu(const szTitle[], const szHandler[], iOutside = 0)
 {
-	register_menucmd(register_menuid(szTitle, iOutside), MENU_KEYS, szFunction);
+	register_menucmd(register_menuid(szTitle, iOutside), MENU_KEYS, szHandler);
 }
